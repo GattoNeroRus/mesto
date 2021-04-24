@@ -8,7 +8,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место</title>
 </head>
-<body>
-
+<body class="root">
+  <div class="popup">
+    <div class="popup__background"></div>
+    <form class="popup__container">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <input type="text" id="nameInput" class="popup__input" value="" placeholder="Здесь кто-то должен быть..." maxlength="20" required>
+      <input type="text" id="jobInput" class="popup__input" value="" placeholder="Чем он отличился?" maxlength="20" required>
+      <button type="submit" class="popup__submit-button">Сохранить</button>
+      <button type="button" class="popup__close-button"></button>
+    </form>
+  </div>
+  <div class="page">
+    <header class="header">
+      <img src="./images/header__logo.svg" alt="Логотип" class="header__logo">
+    </header>
+    <div class="profile">
+      <img src="./images/panda.jpg" alt="Фотография профиля" class="profile__avatar">
+      <div class="profile__info">
+        <h1 class="profile__title">Большая панда</h1>
+        <button type="button" title="Редактировать профиль" class="profile__edit-button"></button>
+        <p class="profile__subtitle">Поедатель бамбуковых лесов</p>
+      </div>
+      <button type="button" title="Добавить запись" class="profile__add-button"></button>
+    </div>
+    <div class="elements">
+      <article class="element">
+        <img src="./images/kremlin.jpg" alt="Московский Кремль" class="element__image">
+        <div class="element__container">
+          <h2 class="element__title">Московский Кремль</h2>
+          <button  type="button" class="element__hearth-icon"></button>
+        </div>
+      </article>
+      <article class="element">
+        <img src="./images/palace-square.jpg" alt="Дворцовая площадь" class="element__image">
+        <div class="element__container">
+          <h2 class="element__title">Дворцовая площадь</h2>
+          <button  type="button" class="element__hearth-icon"></button>
+        </div>
+      </article>
+      <article class="element">
+        <img src="./images/smolensk.jpg" alt="Смоленск" class="element__image">
+        <div class="element__container">
+          <h2 class="element__title">Смоленск</h2>
+          <button  type="button" class="element__hearth-icon"></button>
+        </div>
+      </article>
+      <article class="element">
+        <img src="./images/church-in-rostow.jpg" alt="Церковь в Ростове" class="element__image">
+        <div class="element__container">
+          <h2 class="element__title">Церковь в Ростове</h2>
+          <button  type="button" class="element__hearth-icon"></button>
+        </div>
+      </article>
+      <article class="element">
+        <img src="./images/city-of-capitals.jpg" alt="Город столиц" class="element__image">
+        <div class="element__container">
+          <h2 class="element__title">Город столиц</h2>
+          <button  type="button" class="element__hearth-icon"></button>
+        </div>
+      </article>
+      <article class="element">
+        <img src="./images/elista.jpg" alt="Элиста" class="element__image">
+        <div class="element__container">
+          <h2 class="element__title">Элиста</h2>
+          <button  type="button" class="element__hearth-icon"></button>
+        </div>
+      </article>
+    </div>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; GattoNero_Rus (Constantine M Kolpashnikov), 2021</p>
+    </footer>
+  </div>
+  <script src="./scripts/scr.js"></script>
 </body>
 </html>

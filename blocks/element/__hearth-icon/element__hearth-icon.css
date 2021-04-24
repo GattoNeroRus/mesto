@@ -1,0 +1,17 @@
+.element__hearth-icon {
+  margin: auto 0 auto 4px;
+  padding: 0;
+  min-width: 22px;
+  height: 22px;
+  background-color: transparent;
+  background-image: url(../../../images/hearth-icon.svg);
+  border: none;
+  outline: none;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.element__hearth-icon:hover {
+  background-image: url(../../../images/hearth-icon_hover.svg);
+  cursor: pointer;
+}

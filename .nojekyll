@@ -1,0 +1,9 @@
+pwd
+/Users/Const/Desktop/Яндекс.практикум/dev/mesto
+
+git branch
+* main
+develop
+
+touch .nojekyll
+git add . && git commit -m "added nojekyll"
