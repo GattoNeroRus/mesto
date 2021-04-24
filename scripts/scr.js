@@ -20,10 +20,10 @@ function popupClose () {
 }
 
 function formSubmitHandler (evt) {
-    evt.preventDefault();
-    title.textContent = nameInput.value;
-    subtitle.textContent = jobInput.value;
-    popupClose();
+  evt.preventDefault();
+  title.textContent = nameInput.value;
+  subtitle.textContent = jobInput.value;
+  popupClose();
 }
 
 /* ОБРАБОТЧИКИ СОБЫТИЙ */

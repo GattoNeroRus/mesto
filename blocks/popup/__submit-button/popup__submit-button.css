@@ -9,6 +9,7 @@
   border-radius: 2px;
   outline: none;
   transition: 0.4s;
+  user-select: none;
 }
 
 .popup__submit-button:hover {
