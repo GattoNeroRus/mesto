@@ -1,5 +1,6 @@
 .popup__close-button {
   position: absolute;
+  z-index: 2;
   border: none;
   outline: none;
   top: -40px;
