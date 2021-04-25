@@ -7,3 +7,10 @@
   pointer-events: none;
   user-select: none;
 }
+
+@media screen and (max-width: 500px) {
+  .footer__copyright {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

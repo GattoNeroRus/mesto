@@ -12,11 +12,13 @@ let jobInput = formElement.querySelector('#jobInput');
 
 /* ФУНКЦИИ */
 function popupOpen () {
-  popup.classList.add('popup_opened')
+  nameInput.value = title.textContent;
+  jobInput.value = subtitle.textContent;
+  popup.classList.add('popup_opened');
 }
 
 function popupClose () {
-  popup.classList.remove('popup_opened')
+  popup.classList.remove('popup_opened');
 }
 
 function formSubmitHandler (evt) {

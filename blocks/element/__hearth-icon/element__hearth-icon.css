@@ -12,6 +12,6 @@
 }
 
 .element__hearth-icon:hover {
-  background-image: url(../../../images/hearth-icon_hover.svg);
+  opacity: 0.5;
   cursor: pointer;
 }
