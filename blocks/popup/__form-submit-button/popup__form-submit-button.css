@@ -8,11 +8,11 @@
   border: none;
   border-radius: 2px;
   outline: none;
-  transition: 0.4s;
   user-select: none;
 }
 
 .popup__form-submit-button:hover {
+  transition: 0.4s;
   cursor: pointer;
   opacity: 0.8;
 }
