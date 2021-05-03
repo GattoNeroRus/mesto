@@ -54,11 +54,13 @@ function closePopup (popupName) {
 }
 
 function openImageZoom (e) {
-  const image = imageZoom.querySelector('.popup__image');
+  const image = imageZoom.querySelector('.popup__image'),
+        title = e.target.closest('.element').querySelector('.element__title').textContent;
 
   image.src = e.target.src;
-  image.alt, imageZoom.querySelector('.popup__subtitle').textContent = e.target.closest('.element').querySelector('.element__title').textContent;
-  openPopup(imageZoom);
+  image.alt = title;
+  imageZoom.querySelector('.popup__subtitle').textContent = title;
+  image.onload = openPopup(imageZoom);
 }
 
 function addElement (name, link) {
