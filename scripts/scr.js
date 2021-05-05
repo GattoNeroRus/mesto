@@ -12,7 +12,10 @@ const elementTemplate = document.querySelector('#element-template'),
       profileNameInput = document.querySelector('#nameInput'),
       profileJobInput = document.querySelector('#jobInput'),
       profileTitle = document.querySelector('.profile__title'),
-      profileSubtitle = document.querySelector('.profile__subtitle');
+      profileSubtitle = document.querySelector('.profile__subtitle'),
+
+      image = imageZoom.querySelector('.popup__image'),
+      popupSubtitle = imageZoom.querySelector('.popup__subtitle')
 
 
 /* МАССИВ С КАРТОЧКАМИ */
@@ -53,28 +56,28 @@ function closePopup (popupName) {
   popupName.classList.remove('popup_opened');
 }
 
-function openImageZoom (e) {
-  const image = imageZoom.querySelector('.popup__image'),
-        title = e.target.closest('.element').querySelector('.element__title').textContent;
-
-  image.src = e.target.src;
-  image.alt = title;
-  imageZoom.querySelector('.popup__subtitle').textContent = title;
+function openImageZoom (name, link) {
+  image.src = link;
+  image.alt = name;
+  popupSubtitle.textContent = name;
   image.onload = openPopup(imageZoom);
 }
 
-function addElement (name, link) {
+function createNewCard(name, link) {
   const newElement = elementTemplate.content.querySelector('.element').cloneNode(true),
-        image = newElement.querySelector('.element__image');
+        elementImage = newElement.querySelector('.element__image');
 
-  image.src = link;
-  image.alt = name;
-  image.addEventListener('click', e => openImageZoom(e));
+  elementImage.src = link;
+  elementImage.alt = name;
+  elementImage.addEventListener('click', e => openImageZoom(name, link));
   newElement.querySelector('.element__title').textContent = name;
   newElement.querySelector('.element__trash-icon').addEventListener('click', e => e.target.closest('.element').remove());
   newElement.querySelector('.element__hearth-icon').addEventListener('click', e => e.target.classList.toggle('element__hearth-icon_active'));
+  return newElement;
+}
 
-  elementsContainer.prepend(newElement);
+function addElement (name, link) {
+  elementsContainer.prepend(createNewCard(name, link));
 }
 
 
