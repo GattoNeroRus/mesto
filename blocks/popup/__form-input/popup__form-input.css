@@ -4,7 +4,8 @@
   font-size: 14px;
   line-height: 17px;
   color: #000000;
-  padding: 36px 0 13px;
+  margin: 0;
+  padding: 21px 0 13px;
   width: 100%;
   max-width: 358px;
   outline: none;
@@ -12,10 +13,21 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
+.popup__form-input:first-of-type {
+  padding: 51px 0 13px;
+}
+
+.popup__form-input::-webkit-input-placeholder {
+  color: #C4C4C4;
+}
+
+.popup__form-input::-moz-placeholder {
+  color: #C4C4C4;
+}
+
 @media screen and (max-width: 720px) {
   .popup__form-input {
     max-width: 238px;
-    padding: 0;
-    margin: 36px 0 13px;
+    padding: 36px 0 13px;
   }
 }

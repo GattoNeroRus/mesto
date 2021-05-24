@@ -15,8 +15,16 @@ const elementTemplate = document.querySelector('#element-template'),
       profileSubtitle = document.querySelector('.profile__subtitle'),
 
       image = imageZoom.querySelector('.popup__image'),
-      popupSubtitle = imageZoom.querySelector('.popup__subtitle')
+      popupSubtitle = imageZoom.querySelector('.popup__subtitle'),
+      popupBackgrounds = document.querySelectorAll('.popup__background');
 
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__form-input',
+  submitButtonSelector: '.popup__form-submit-button',
+  inputErrorClass: 'popup__form-input-error',
+  errorActiveClass: 'popup__form-input-error',
+}
 
 /* МАССИВ С КАРТОЧКАМИ */
 const initialCards = [
@@ -50,10 +58,39 @@ const initialCards = [
 /* УНИВЕРСАЛЬНЫЕ ФУНКЦИИ */
 function openPopup (popupName) {
   popupName.classList.add('popup_opened');
+  document.addEventListener('keydown', escapeClickClose);
+  popupName.querySelector('.popup__background').addEventListener('click', activePopupCloser);
+
+  if (popupName.querySelector('.popup__form-input')) {
+    openEditablePopup(popupName);
+  }
+}
+
+function openEditablePopup (popupName) {
+  clearAllErrorMessages(popupName);
+  hideAllInputErrors(popupName);
+
+  const inputList = Array.from(popupName.querySelectorAll('.popup__form-input')),
+        button = popupName.querySelector('.popup__form-submit-button');
+
+  toggleButtonState(button, inputList)
 }
 
 function closePopup (popupName) {
   popupName.classList.remove('popup_opened');
+  document.removeEventListener('keydown', escapeClickClose);
+  popupName.querySelector('.popup__background').removeEventListener('click', activePopupCloser);
+}
+
+function activePopupCloser () {
+  const activePopup = document.querySelector('.popup_opened');
+  closePopup(activePopup);
+}
+
+function escapeClickClose (evt) {
+  if (evt.key === 'Escape') {
+    activePopupCloser()
+  }
 }
 
 function openImageZoom (name, link) {
@@ -80,13 +117,12 @@ function addElement (name, link) {
   elementsContainer.prepend(createNewCard(name, link));
 }
 
-
 /* ОБРАБОТЧИКИ СОБЫТИЙ И СМЕШАННЫЕ ФУНКЦИИ */
 initialCards.forEach(e => {addElement(e.name, e.link)});
 
 document.querySelectorAll('.popup__close-button').forEach(e => e.addEventListener('click', e => closePopup(e.target.closest('.popup'))));
 
-addButton.addEventListener('click', () => openPopup(addElementPopup)); // Не совсем понимаю, почему, но правильно работает только так
+addButton.addEventListener('click', () => openPopup(addElementPopup));
 
 profileEditButton.addEventListener('click', () => {
   profileNameInput.value = profileTitle.textContent;
@@ -106,3 +142,5 @@ addElementPopup.addEventListener('submit', evt => {
   addElement(addElementPopup.querySelector('#elementTitle').value, addElementPopup.querySelector('#elementImage').value);
   closePopup(addElementPopup);
 });
+
+enableValidation(config)
