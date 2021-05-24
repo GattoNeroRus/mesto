@@ -25,7 +25,7 @@ const config = {
   inputSelector: '.popup__form-input',
   spanSelector: '.popup__form-span',
   submitButtonSelector: '.popup__form-submit-button',
-  inputErrorClass: 'popup__form-input-error'
+  inputErrorClass: '.popup__form-input_type_error'
 }
 
 /* МАССИВ С КАРТОЧКАМИ */
@@ -129,7 +129,7 @@ addElementPopup.addEventListener('submit', evt => {
   evt.preventDefault();
   addElement(addElementTitle.value, addElementImage.value);
   closePopup(addElementPopup);
-  addElementPopup.querySelector('.popup__form').reset()
+  addElementPopup.querySelector(config.formSelector).reset()
 });
 
 enableValidation(config)

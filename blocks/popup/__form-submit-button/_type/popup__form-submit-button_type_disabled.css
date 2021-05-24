@@ -1,11 +1,11 @@
-.popup__form-submit-button-disabled {
+.popup__form-submit-button_type_disabled {
   background-color: #fff;
   color: #000;
   border: 1px solid #000;
   opacity: 0.2;
 }
 
-.popup__form-submit-button-disabled:hover {
+.popup__form-submit-button_type_disabled:hover {
   transition: none;
   cursor: auto;
   opacity: 0.2;

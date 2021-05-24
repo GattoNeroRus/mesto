@@ -11,16 +11,14 @@
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__form-title/popup__form-title.css);
 @import url(../blocks/popup/__form-input/popup__form-input.css);
+@import url(../blocks/popup/__form-input/_type/popup__form-input_type_error.css);
 @import url(../blocks/popup/__form-span/popup__form-span.css);
 @import url(../blocks/popup/__form-submit-button/popup__form-submit-button.css);
-@import url(../blocks/popup/__form-submit-button-disabled/popup__form-submit-button-disabled.css);
+@import url(../blocks/popup/__form-submit-button/_type/popup__form-submit-button_type_disabled.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__subtitle/popup__subtitle.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
-
-/* POPUP ERRORS */
-@import url(../blocks/popup/__form-input-error/popup__form-input-error.css);
 
 /* HEADER */
 @import url(../blocks/header/header.css);

@@ -3,7 +3,7 @@ function clearErrorMessage (el) {
 }
 
 function hideInputError (el) {
-  el.classList.remove('popup__form-input-error') /* C config тут не работает */
+  el.classList.remove('.popup__form-input_type_error') /* C config тут не работает */
 }
 
 function clearAllErrorMessages (form) {
@@ -58,10 +58,10 @@ function checkInputValidity (inputElement, form) {
 function toggleButtonState (button, inputList) {
   if (hasInvalidInput(inputList)) {
     button.disabled = true;
-    button.classList.add('popup__form-submit-button-disabled')
+    button.classList.add('popup__form-submit-button_type_disabled')
   } else {
     button.disabled = false;
-    button.classList.remove('popup__form-submit-button-disabled')
+    button.classList.remove('popup__form-submit-button_type_disabled')
   }
 }
 
