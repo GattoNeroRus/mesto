@@ -4,6 +4,8 @@ const elementTemplate = document.querySelector('#element-template'),
 
       profileEditPopup = document.querySelector('#profileEdit'),
       addElementPopup = document.querySelector('#addElement'),
+      addElementTitle = addElementPopup.querySelector('#elementTitle'),
+      addElementImage = addElementPopup.querySelector('#elementImage'),
       imageZoom = document.querySelector('#imageZoom'),
 
       addButton = document.querySelector('.profile__add-button'),
@@ -21,9 +23,9 @@ const elementTemplate = document.querySelector('#element-template'),
 const config = {
   formSelector: '.popup__form',
   inputSelector: '.popup__form-input',
+  spanSelector: '.popup__form-span',
   submitButtonSelector: '.popup__form-submit-button',
-  inputErrorClass: 'popup__form-input-error',
-  errorActiveClass: 'popup__form-input-error',
+  inputErrorClass: 'popup__form-input-error'
 }
 
 /* МАССИВ С КАРТОЧКАМИ */
@@ -60,20 +62,6 @@ function openPopup (popupName) {
   popupName.classList.add('popup_opened');
   document.addEventListener('keydown', escapeClickClose);
   popupName.querySelector('.popup__background').addEventListener('click', activePopupCloser);
-
-  if (popupName.querySelector('.popup__form-input')) {
-    openEditablePopup(popupName);
-  }
-}
-
-function openEditablePopup (popupName) {
-  clearAllErrorMessages(popupName);
-  hideAllInputErrors(popupName);
-
-  const inputList = Array.from(popupName.querySelectorAll('.popup__form-input')),
-        button = popupName.querySelector('.popup__form-submit-button');
-
-  toggleButtonState(button, inputList)
 }
 
 function closePopup (popupName) {
@@ -122,12 +110,12 @@ initialCards.forEach(e => {addElement(e.name, e.link)});
 
 document.querySelectorAll('.popup__close-button').forEach(e => e.addEventListener('click', e => closePopup(e.target.closest('.popup'))));
 
-addButton.addEventListener('click', () => openPopup(addElementPopup));
+addButton.addEventListener('click', () => openEditablePopup(addElementPopup));
 
 profileEditButton.addEventListener('click', () => {
   profileNameInput.value = profileTitle.textContent;
   profileJobInput.value = profileSubtitle.textContent;
-  openPopup(profileEditPopup);
+  openEditablePopup(profileEditPopup);
 });
 
 profileEditPopup.addEventListener('submit', evt => {
@@ -139,8 +127,9 @@ profileEditPopup.addEventListener('submit', evt => {
 
 addElementPopup.addEventListener('submit', evt => {
   evt.preventDefault();
-  addElement(addElementPopup.querySelector('#elementTitle').value, addElementPopup.querySelector('#elementImage').value);
+  addElement(addElementTitle.value, addElementImage.value);
   closePopup(addElementPopup);
+  addElementPopup.querySelector('.popup__form').reset()
 });
 
 enableValidation(config)

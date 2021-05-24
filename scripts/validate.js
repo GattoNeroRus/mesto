@@ -3,16 +3,27 @@ function clearErrorMessage (el) {
 }
 
 function hideInputError (el) {
-  el.classList.remove('popup__form-input-error')
+  el.classList.remove('popup__form-input-error') /* C config тут не работает */
 }
 
 function clearAllErrorMessages (form) {
-  const spans = Array.from(form.querySelectorAll('.popup__form-span'));
+  const spans = Array.from(form.querySelectorAll(config.spanSelector));
   spans.forEach((span) => clearErrorMessage(span));
 }
 
+function openEditablePopup (popupName) {
+  clearAllErrorMessages(popupName);
+  hideAllInputErrors(popupName);
+
+  const inputList = Array.from(popupName.querySelectorAll(config.inputSelector)),
+        button = popupName.querySelector(config.submitButtonSelector);
+
+  toggleButtonState(button, inputList);
+  openPopup(popupName)
+}
+
 function hideAllInputErrors (form) {
-  const inputs = Array.from(form.querySelectorAll('.popup__form-input'));
+  const inputs = Array.from(form.querySelectorAll(config.inputSelector));
   inputs.forEach((input) => hideInputError(input));
 }
 

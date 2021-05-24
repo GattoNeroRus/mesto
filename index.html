@@ -19,7 +19,7 @@
         <span class="popup__form-span" id="nameInput-error"></span>
         <input type="text" name="profile-job" id="jobInput" class="popup__form-input" placeholder="Чем он отличился?" minlength="2" maxlength="200" required>
         <span class="popup__form-span" id="jobInput-error"></span>
-        <button type="submit" class="popup__form-submit-button popup__form-submit-button-disabled" disabled="true">Сохранить</button>
+        <button type="submit" class="popup__form-submit-button popup__form-submit-button-disabled" disabled>Сохранить</button>
       </form>
     </div>
   </div>
@@ -27,13 +27,13 @@
     <div class="popup__background"></div>
     <div class="popup__container">
       <button type="button" class="popup__close-button"></button>
-      <form name="profile-edit" class="popup__form" novalidate>
+      <form name="place-add" class="popup__form" novalidate>
         <h2 class="popup__form-title">Новое место</h2>
         <input type="text" name="element-title" id="elementTitle" class="popup__form-input" placeholder="Название места" minlength="2" maxlength="30" required>
         <span class="popup__form-span" id="elementTitle-error"></span>
         <input type="url" name="element-image" id="elementImage" class="popup__form-input" placeholder="Ссылка на изображение" required>
         <span class="popup__form-span" id="elementImage-error"></span>
-        <button type="submit" class="popup__form-submit-button popup__form-submit-button-disabled" disabled="true">Создать</button>
+        <button type="submit" class="popup__form-submit-button popup__form-submit-button-disabled" disabled>Создать</button>
       </form>
     </div>
   </div>
@@ -77,6 +77,6 @@
     </article>
   </template>
   <script src="./scripts/validate.js"></script>
-  <script src="./scripts/scr.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>
