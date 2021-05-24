@@ -3,7 +3,7 @@ function clearErrorMessage (el) {
 }
 
 function hideInputError (el) {
-  el.classList.remove('.popup__form-input_type_error') /* C config тут не работает */
+  el.classList.remove(config.inputErrorClass)
 }
 
 function clearAllErrorMessages (form) {
@@ -28,16 +28,14 @@ function hideAllInputErrors (form) {
 }
 
 function showError (inputElement, form) {
-  const {inputErrorClass, errorActiveClass} = config,
-         errorElement = form.querySelector(`#${inputElement.id}-error`);
+  const errorElement = form.querySelector(`#${inputElement.id}-error`);
 
-  inputElement.classList.add(inputErrorClass);
+  inputElement.classList.add(config.inputErrorClass);
   errorElement.textContent = inputElement.validationMessage;
 }
 
 function hideError (inputElement, form) {
-  const {inputErrorClass, errorActiveClass} = config,
-        errorElement = form.querySelector(`#${inputElement.id}-error`);
+  const errorElement = form.querySelector(`#${inputElement.id}-error`);
 
   hideInputError(inputElement);
   clearErrorMessage(errorElement);
@@ -58,10 +56,10 @@ function checkInputValidity (inputElement, form) {
 function toggleButtonState (button, inputList) {
   if (hasInvalidInput(inputList)) {
     button.disabled = true;
-    button.classList.add('popup__form-submit-button_type_disabled')
+    button.classList.add(config.submitButtonDisabledClass)
   } else {
     button.disabled = false;
-    button.classList.remove('popup__form-submit-button_type_disabled')
+    button.classList.remove(config.submitButtonDisabledClass)
   }
 }
 

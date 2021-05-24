@@ -25,7 +25,8 @@ const config = {
   inputSelector: '.popup__form-input',
   spanSelector: '.popup__form-span',
   submitButtonSelector: '.popup__form-submit-button',
-  inputErrorClass: '.popup__form-input_type_error'
+  submitButtonDisabledClass: 'popup__form-submit-button_type_disabled',
+  inputErrorClass: 'popup__form-input_type_error'
 }
 
 /* МАССИВ С КАРТОЧКАМИ */
