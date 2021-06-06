@@ -1,12 +1,10 @@
 /* ПЕРЕМЕННЫЕ */
-const elementTemplate = document.querySelector('#element-template'),
-      elementsContainer = document.querySelector('.elements'),
+const elementsContainer = document.querySelector('.elements'),
 
       profileEditPopup = document.querySelector('#profileEdit'),
       addElementPopup = document.querySelector('#addElement'),
       addElementTitle = addElementPopup.querySelector('#elementTitle'),
       addElementImage = addElementPopup.querySelector('#elementImage'),
-      imageZoom = document.querySelector('#imageZoom'),
 
       addButton = document.querySelector('.profile__add-button'),
 
@@ -14,20 +12,11 @@ const elementTemplate = document.querySelector('#element-template'),
       profileNameInput = document.querySelector('#nameInput'),
       profileJobInput = document.querySelector('#jobInput'),
       profileTitle = document.querySelector('.profile__title'),
-      profileSubtitle = document.querySelector('.profile__subtitle'),
+      profileSubtitle = document.querySelector('.profile__subtitle');
 
-      image = imageZoom.querySelector('.popup__image'),
-      popupSubtitle = imageZoom.querySelector('.popup__subtitle'),
-      popupBackgrounds = document.querySelectorAll('.popup__background');
-
-const config = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__form-input',
-  spanSelector: '.popup__form-span',
-  submitButtonSelector: '.popup__form-submit-button',
-  submitButtonDisabledClass: 'popup__form-submit-button_type_disabled',
-  inputErrorClass: 'popup__form-input_type_error'
-}
+import { Card } from './Card.js';
+import { config, FormValidator } from './FormValidator.js';
+export { openPopup, hideInputError, clearErrorMessage }
 
 /* МАССИВ С КАРТОЧКАМИ */
 const initialCards = [
@@ -82,32 +71,40 @@ function escapeClickClose (evt) {
   }
 }
 
-function openImageZoom (name, link) {
-  image.src = link;
-  image.alt = name;
-  popupSubtitle.textContent = name;
-  image.onload = openPopup(imageZoom);
+function clearErrorMessage (el) {
+  el.textContent = ''
 }
 
-function createNewCard(name, link) {
-  const newElement = elementTemplate.content.querySelector('.element').cloneNode(true),
-        elementImage = newElement.querySelector('.element__image');
+function hideInputError (el) {
+  el.classList.remove(config.inputErrorClass)
+}
 
-  elementImage.src = link;
-  elementImage.alt = name;
-  elementImage.addEventListener('click', e => openImageZoom(name, link));
-  newElement.querySelector('.element__title').textContent = name;
-  newElement.querySelector('.element__trash-icon').addEventListener('click', e => e.target.closest('.element').remove());
-  newElement.querySelector('.element__hearth-icon').addEventListener('click', e => e.target.classList.toggle('element__hearth-icon_active'));
-  return newElement;
+function clearAllErrorMessages (form) {
+  const spans = Array.from(form.querySelectorAll(config.spanSelector));
+  spans.forEach((span) => clearErrorMessage(span));
+}
+
+function hideAllInputErrors (form) {
+  const inputs = Array.from(form.querySelectorAll(config.inputSelector));
+  inputs.forEach((input) => hideInputError(input));
 }
 
 function addElement (name, link) {
-  elementsContainer.prepend(createNewCard(name, link));
+  const newCard = new Card(name, link),
+        cardElement = newCard.createCard();
+
+  elementsContainer.prepend(cardElement);
 }
 
 /* ОБРАБОТЧИКИ СОБЫТИЙ И СМЕШАННЫЕ ФУНКЦИИ */
 initialCards.forEach(e => {addElement(e.name, e.link)});
+
+function openEditablePopup (popupName) {
+  clearAllErrorMessages(popupName);
+  hideAllInputErrors(popupName);
+
+  openPopup(popupName)
+}
 
 document.querySelectorAll('.popup__close-button').forEach(e => e.addEventListener('click', e => closePopup(e.target.closest('.popup'))));
 
@@ -133,4 +130,10 @@ addElementPopup.addEventListener('submit', evt => {
   addElementPopup.querySelector(config.formSelector).reset()
 });
 
-enableValidation(config)
+
+/* ВАЛИДАЦИЯ ЧЕРЕЗ КЛАСС */
+const profileEditFormInformation = new FormValidator(profileEditPopup);
+      profileEditFormInformation.enableValidation();
+
+const addElementFormValidator = new FormValidator(addElementPopup);
+      addElementFormValidator.enableValidation();
