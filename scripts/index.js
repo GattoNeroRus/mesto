@@ -25,7 +25,7 @@ const config = {
 
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
-export { openPopup, config}
+export { openPopup }
 
 /* МАССИВ С КАРТОЧКАМИ */
 const initialCards = [
@@ -80,16 +80,6 @@ function escapeClickClose (evt) {
   }
 }
 
-function clearAllErrorMessages (form) {
-  const spans = Array.from(form.querySelectorAll(config.spanSelector));
-  spans.forEach((span) => span.textContent = '');
-}
-
-function hideAllInputErrors (form) {
-  const inputs = Array.from(form.querySelectorAll(config.inputSelector));
-  inputs.forEach((input) => input.classList.remove(config.inputErrorClass));
-}
-
 function addElement (name, link) {
   const newCard = new Card(name, link, '#element-template'),
         cardElement = newCard.createCard();
@@ -101,8 +91,8 @@ function addElement (name, link) {
 initialCards.forEach(e => {addElement(e.name, e.link)});
 
 function openEditablePopup (popupName) {
-  clearAllErrorMessages(popupName);
-  hideAllInputErrors(popupName);
+  Array.from(popupName.querySelectorAll(config.spanSelector)).forEach((span) => span.textContent = '');
+  Array.from(popupName.querySelectorAll(config.inputSelector)).forEach((input) => input.classList.remove(config.inputErrorClass));
 
   openPopup(popupName)
 }

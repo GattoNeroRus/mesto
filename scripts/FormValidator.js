@@ -1,5 +1,3 @@
-import { config } from './index.js'
-
 class FormValidator {
   constructor(formSelector, config) {
     this._form = formSelector;
@@ -13,10 +11,10 @@ class FormValidator {
   toggleButtonState() {
     if (this._hasInvalidInput()) {
       this._button.disabled = true;
-      this._button.classList.add(config.submitButtonDisabledClass)
+      this._button.classList.add(this._buttonDisabledClass)
     } else {
       this._button.disabled = false;
-      this._button.classList.remove(config.submitButtonDisabledClass)
+      this._button.classList.remove(this._buttonDisabledClass)
     }
   }
 
@@ -28,7 +26,7 @@ class FormValidator {
     this._button = buttonElement;
 
     this._inputList.forEach((inputElement) => {
-      inputElement.addEventListener("input", () => {
+      inputElement.addEventListener('input', () => {
         this._inputElement = inputElement;
         this._checkInputValidity();
         this.toggleButtonState();
@@ -51,8 +49,8 @@ class FormValidator {
     errorElement.textContent = this._inputElement.validationMessage;
   }
 
-  _hideInputError() {
-    this._inputElement.classList.remove(config.inputErrorClass)
+  _hideInputError(errorElement) {
+    this._inputElement.classList.remove(this._ErrorClass)
   }
 
   _clearErrorMessage(errorElement) {
@@ -62,7 +60,7 @@ class FormValidator {
   _hideError() {
     const errorElement = this._form.querySelector(`#${this._inputElement.id}-error`);
 
-    this._hideInputError;
+    this._hideInputError();
     this._clearErrorMessage(errorElement);
   }
 
