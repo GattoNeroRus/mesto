@@ -14,9 +14,18 @@ const elementsContainer = document.querySelector('.elements'),
       profileTitle = document.querySelector('.profile__title'),
       profileSubtitle = document.querySelector('.profile__subtitle');
 
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__form-input',
+  spanSelector: '.popup__form-span',
+  submitButtonSelector: '.popup__form-submit-button',
+  submitButtonDisabledClass: 'popup__form-submit-button_type_disabled',
+  inputErrorClass: 'popup__form-input_type_error'
+}
+
 import { Card } from './Card.js';
-import { config, FormValidator } from './FormValidator.js';
-export { openPopup, hideInputError, clearErrorMessage }
+import { FormValidator } from './FormValidator.js';
+export { openPopup, config}
 
 /* МАССИВ С КАРТОЧКАМИ */
 const initialCards = [
@@ -71,26 +80,18 @@ function escapeClickClose (evt) {
   }
 }
 
-function clearErrorMessage (el) {
-  el.textContent = ''
-}
-
-function hideInputError (el) {
-  el.classList.remove(config.inputErrorClass)
-}
-
 function clearAllErrorMessages (form) {
   const spans = Array.from(form.querySelectorAll(config.spanSelector));
-  spans.forEach((span) => clearErrorMessage(span));
+  spans.forEach((span) => span.textContent = '');
 }
 
 function hideAllInputErrors (form) {
   const inputs = Array.from(form.querySelectorAll(config.inputSelector));
-  inputs.forEach((input) => hideInputError(input));
+  inputs.forEach((input) => input.classList.remove(config.inputErrorClass));
 }
 
 function addElement (name, link) {
-  const newCard = new Card(name, link),
+  const newCard = new Card(name, link, '#element-template'),
         cardElement = newCard.createCard();
 
   elementsContainer.prepend(cardElement);
@@ -128,12 +129,14 @@ addElementPopup.addEventListener('submit', evt => {
   addElement(addElementTitle.value, addElementImage.value);
   closePopup(addElementPopup);
   addElementPopup.querySelector(config.formSelector).reset()
+  addElementFormValidator.toggleButtonState()
 });
 
 
 /* ВАЛИДАЦИЯ ЧЕРЕЗ КЛАСС */
-const profileEditFormInformation = new FormValidator(profileEditPopup);
+const profileEditFormInformation = new FormValidator(profileEditPopup, config);
       profileEditFormInformation.enableValidation();
 
-const addElementFormValidator = new FormValidator(addElementPopup);
-      addElementFormValidator.enableValidation();
+const addElementFormValidator = new FormValidator(addElementPopup, config);
+      addElementFormValidator.enableValidation()
+      addElementFormValidator.toggleButtonState();
