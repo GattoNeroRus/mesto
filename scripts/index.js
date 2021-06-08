@@ -90,21 +90,18 @@ function addElement (name, link) {
 /* ОБРАБОТЧИКИ СОБЫТИЙ И СМЕШАННЫЕ ФУНКЦИИ */
 initialCards.forEach(e => {addElement(e.name, e.link)});
 
-function openEditablePopup (popupName) {
-  Array.from(popupName.querySelectorAll(config.spanSelector)).forEach((span) => span.textContent = '');
-  Array.from(popupName.querySelectorAll(config.inputSelector)).forEach((input) => input.classList.remove(config.inputErrorClass));
-
-  openPopup(popupName)
-}
-
 document.querySelectorAll('.popup__close-button').forEach(e => e.addEventListener('click', e => closePopup(e.target.closest('.popup'))));
 
-addButton.addEventListener('click', () => openEditablePopup(addElementPopup));
+addButton.addEventListener('click', () => {
+  addElementFormValidator.clearForm();
+  openPopup(addElementPopup);
+});
 
 profileEditButton.addEventListener('click', () => {
   profileNameInput.value = profileTitle.textContent;
   profileJobInput.value = profileSubtitle.textContent;
-  openEditablePopup(profileEditPopup);
+  profileEditFormInformation.clearForm();
+  openPopup(profileEditPopup);
 });
 
 profileEditPopup.addEventListener('submit', evt => {

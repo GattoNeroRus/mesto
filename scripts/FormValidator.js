@@ -64,6 +64,13 @@ class FormValidator {
     this._clearErrorMessage(errorElement);
   }
 
+  clearForm() {
+    this._inputList.forEach((inputElement) => {
+      this._inputElement = inputElement;
+      this._hideError()
+    });
+  }
+
   _hasInvalidInput() {
     return this._inputList.some((inputElement) => {return !inputElement.validity.valid});
   }
